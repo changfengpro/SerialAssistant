@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>串口助手</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_main">
+    <property name="spacing">
+     <number>8</number>
+    </property>
+    <property name="leftMargin">
+     <number>8</number>
+    </property>
+    <property name="topMargin">
+     <number>8</number>
+    </property>
+    <property name="rightMargin">
+     <number>8</number>
+    </property>
+    <property name="bottomMargin">
+     <number>8</number>
+    </property>
+
+    <!-- 左侧：串口配置面板 -->
+    <item>
+     <widget class="QGroupBox" name="groupPort">
+      <property name="title">
+       <string>串口配置</string>
+      </property>
+      <property name="maximumWidth">
+       <number>200</number>
+      </property>
+      <layout class="QVBoxLayout" name="vlayout_port">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+
+       <item>
+        <widget class="QLabel"><property name="text"><string>串口号</string></property></widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <widget class="QComboBox" name="comboPort">
+           <property name="minimumWidth"><number>120</number></property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnRefresh">
+           <property name="text"><string>刷新</string></property>
+           <property name="maximumWidth"><number>45</number></property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+
+       <item>
+        <widget class="QLabel"><property name="text"><string>波特率</string></property></widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBaud"/>
+       </item>
+
+       <item>
+        <widget class="QLabel"><property name="text"><string>数据位</string></property></widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboData"/>
+       </item>
+
+       <item>
+        <widget class="QLabel"><property name="text"><string>校验位</string></property></widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboParity"/>
+       </item>
+
+       <item>
+        <widget class="QLabel"><property name="text"><string>停止位</string></property></widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboStop"/>
+       </item>
+
+       <item>
+        <widget class="QFrame">
+         <property name="frameShape"><enum>QFrame::HLine</enum></property>
+         <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btnOpenClose">
+         <property name="text"><string>打开串口</string></property>
+         <property name="minimumHeight"><number>36</number></property>
+         <property name="styleSheet">
+          <string>QPushButton { background-color: #4CAF50; color: white; border-radius: 4px; font-weight: bold; }
+QPushButton:hover { background-color: #45a049; }
+QPushButton:pressed { background-color: #3d8b40; }</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QFrame">
+         <property name="frameShape"><enum>QFrame::HLine</enum></property>
+         <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
+        </widget>
+       </item>
+
+       <!-- 接收选项 -->
+       <item>
+        <widget class="QGroupBox" name="groupRecvOpt">
+         <property name="title"><string>接收选项</string></property>
+         <layout class="QVBoxLayout">
+          <item>
+           <widget class="QCheckBox" name="chkHexRecv">
+            <property name="text"><string>HEX 显示</string></property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chkTimestamp">
+            <property name="text"><string>显示时间戳</string></property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chkAutoScroll">
+            <property name="text"><string>自动滚动</string></property>
+            <property name="checked"><bool>true</bool></property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+
+       <!-- 发送选项 -->
+       <item>
+        <widget class="QGroupBox" name="groupSendOpt">
+         <property name="title"><string>发送选项</string></property>
+         <layout class="QVBoxLayout">
+          <item>
+           <widget class="QCheckBox" name="chkHexSend">
+            <property name="text"><string>HEX 发送</string></property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chkNewline">
+            <property name="text"><string>自动换行(CR+LF)</string></property>
+            <property name="checked"><bool>true</bool></property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+
+       <!-- 定时发送 -->
+       <item>
+        <widget class="QGroupBox" name="groupTimedSend">
+         <property name="title"><string>定时发送</string></property>
+         <layout class="QVBoxLayout">
+          <item>
+           <widget class="QCheckBox" name="chkTimedSend">
+            <property name="text"><string>启用定时发送</string></property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QLabel"><property name="text"><string>间隔(ms)</string></property></widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinInterval">
+              <property name="minimum"><number>10</number></property>
+              <property name="maximum"><number>60000</number></property>
+              <property name="value"><number>1000</number></property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+
+       <item>
+        <spacer>
+         <property name="orientation"><enum>Qt::Vertical</enum></property>
+         <property name="sizeHint" stdset="0"><size><width>20</width><height>40</height></size></property>
+        </spacer>
+       </item>
+
+      </layout>
+     </widget>
+    </item>
+
+    <!-- 右侧：接收区 + 发送区 -->
+    <item>
+     <layout class="QVBoxLayout" name="vlayout_right">
+      <property name="spacing">
+       <number>6</number>
+      </property>
+
+      <!-- 接收区 -->
+      <item>
+       <widget class="QGroupBox" name="groupRecv">
+        <property name="title"><string>接收区</string></property>
+        <layout class="QVBoxLayout">
+         <item>
+          <widget class="QPlainTextEdit" name="textRecv">
+           <property name="readOnly"><bool>true</bool></property>
+           <property name="styleSheet">
+            <string>QPlainTextEdit { font-family: Consolas, Monaco, monospace; font-size: 12px; background-color: #1e1e1e; color: #d4d4d4; }</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout">
+           <item>
+            <spacer>
+             <property name="orientation"><enum>Qt::Horizontal</enum></property>
+             <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnSave">
+             <property name="text"><string>保存接收</string></property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnClear">
+             <property name="text"><string>清空接收</string></property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+
+      <!-- 发送区 -->
+      <item>
+       <widget class="QGroupBox" name="groupSend">
+        <property name="title"><string>发送区</string></property>
+        <property name="maximumHeight"><number>100</number></property>
+        <layout class="QVBoxLayout">
+         <item>
+          <layout class="QHBoxLayout">
+           <item>
+            <widget class="QLineEdit" name="editSend">
+             <property name="placeholderText"><string>输入发送内容，回车或点击发送...</string></property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnSend">
+             <property name="text"><string>发 送</string></property>
+             <property name="minimumWidth"><number>80</number></property>
+             <property name="minimumHeight"><number>32</number></property>
+             <property name="styleSheet">
+              <string>QPushButton { background-color: #2196F3; color: white; border-radius: 4px; font-weight: bold; }
+QPushButton:hover { background-color: #1976D2; }
+QPushButton:pressed { background-color: #1565C0; }</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+
+     </layout>
+    </item>
+
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
